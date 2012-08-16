@@ -1,0 +1,17 @@
+// Place all the styles related to the employees controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#employees-controller {
+	font-family: "MetaT";
+	font-style: normal;
+	
+	.employee {
+		font-family: "MetaT";
+		font-style: normal;	
+		
+		.handle {
+			cursor: move;
+		}
+	}
+}

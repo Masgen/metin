@@ -1,0 +1,18 @@
+$('#stories').append("<%= j render(@stories) %>")
+
+$("#stories")
+<% if @stories.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate(@stories) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>
+
+
+$('.story img').load(function() {
+	if ($("#blackout").length) { 
+		$("#blackout").height(function() { return $(document).height();});
+	}
+});
+
+twttr.widgets.load();
+FB.Share.renderAll();

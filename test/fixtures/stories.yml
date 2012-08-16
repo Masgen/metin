@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyText
+  video: MyString
+  album: 
+  title: MyString
+  event_date: 2012-05-17 12:49:18
+
+two:
+  content: MyText
+  video: MyString
+  album: 
+  title: MyString
+  event_date: 2012-05-17 12:49:18

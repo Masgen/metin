@@ -1,0 +1,289 @@
+// Place all the styles related to the stories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body#stories-controller {
+	.thumbnail {
+		float:left;
+		z-index:10;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		margin:5px;
+		padding:1px;
+		position:relative;
+		height: 190px;
+		width: 190px;
+		border: 1px solid white;
+		img {
+			display:block;
+			position:relative;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+	
+	#page-load {
+		position:relative;
+		left:250px;
+	}
+	
+	.selected {
+		background-color:#FD9898;
+		border: 1px solid darken(#FD9898,20%);
+	}
+	
+	#blackout {
+		position:absolute;
+		background-color:black;
+		-moz-opacity:.50; 
+		filter:alpha(opacity=50); 
+		opacity:.50;
+	}
+	
+	.visual-link {
+		z-index: 100;
+	}
+	
+	#visuals {
+		display: none;
+		position:absolute;
+		z-index:100000;
+		position:fixed;
+		
+		#close {
+			right: -10px;
+			top: -10px;
+			position:absolute;
+			height:50px;
+			cursor: pointer;
+			
+			img { height:100%;}
+		}
+		
+		#next-button {
+			right: -20px;
+			position:absolute;
+			height:80px;
+			cursor: pointer;
+			
+			img { height:100%;}
+		}
+		
+		#back-button {
+			left: -20px;
+			position:absolute;
+			height:80px;
+			cursor: pointer;
+			
+			img { height:100%;}
+		}
+	}
+	
+	#stories {
+		position:relative;
+		top:18px;
+	}
+	
+	#no-result-found {
+		font-family: "MetaT";
+		font-style: normal;
+		font-size: 16px;
+	}
+	
+	.story {
+		font-size:15px;
+		text-align: justify;
+		text-justify: inner-word;
+		position:relative;
+		width:576px;
+		padding: 0 0 15px 0;
+		margin-bottom: 30px;
+		border-bottom: 1px $company solid;
+		
+		.story-header {
+			position:relative;
+			height:25px;
+			.title {
+				position:absolute;
+				left:0;
+				top:0;
+				
+				a {
+					font-family: "MetaT";
+					font-weight: bold;
+					color: black;
+					font-size:17px;
+				}
+			}
+			.event-date {
+				font-family: "MetaT";
+				position:absolute;
+				font-size:14px;
+				right:0;
+				top:2px;
+			}
+		}
+		.video {
+			position:relative;
+			margin-bottom:30px;
+			height:462px;
+			width:576px;
+			background-color: black;
+			line-height:462px;
+			
+			img {
+				vertical-align: middle;
+			}
+			
+			.video-play-button {
+				position: absolute;
+				height: 30%;
+				top:150px;
+				left:230px;
+			}
+		}
+		
+		.social-share {
+			position: relative;
+			top: -7px;
+
+			.facebook {
+				background: url("fb.png") no-repeat;
+				width:57px;
+				height:18px;
+				position: absolute;
+			}
+
+			.twitter {
+				background: url("tw.png") no-repeat;
+				width:51px;
+				height:18px;
+				position: absolute;
+				left: 62px;
+			}
+		}
+		
+		.press-release {
+			position: absolute;
+			right:0;
+			bottom:5px;
+			
+			a {
+				color: $company;
+				font-size:12px;
+				font-family: "MetaT";
+				font-style: italic;
+			}
+		}
+	}
+	
+	#search {
+		z-index:1000;
+		position: fixed;
+		padding: 5px 5px 5px 5px;
+		width:165px;
+		left:650px;
+		top:149px;
+		
+		a {font-family: "MetaT"; color: $company;}
+		
+		#square-one {
+			top: 3px;
+			left:147px;
+		}
+		
+		#company-link-container {
+			padding-bottom:15px;
+		}
+		
+		#filter {
+			position:relative;
+			border-left: 1px solid $company;
+			padding-left:10px;
+			padding-bottom: 15px;
+			
+			#date-filter {
+				position:relative;
+				
+				#horizontal-date-top {
+					position: absolute;
+					border-top: 1px $company solid;
+					left: -10px;
+					width:15px;
+					height:2px;
+				}
+				
+				#clear-all {
+					top:10px;
+					color: $company;
+					position: relative;
+					font-family: "MetaT";
+					font-weight: 100;
+					font-size: 14px;
+					padding-bottom:5px;
+				}
+
+				#no-posts {
+					top:10px;
+					color: $company;
+					position: relative;
+					font-family: "MetaT";
+					font-weight: 100;
+					font-size: 14px;
+					padding-bottom:10px;
+				}
+				
+				ul { margin: 0;}
+				
+				ul.years {
+					position:relative;
+					list-style-type:none;
+					padding: 10px 0 0 0;
+					li.year {
+						position:relative;
+						a {font-weight:bold;}
+						ul.months {
+							list-style-type:none;
+							display:none;
+							padding-left: 10px;
+							li.month a {font-size:12px; font-weight:normal;}	
+						}
+					}
+				}
+			}
+
+			table#search-facility {
+				padding:0;
+				margin:0;
+				position:relative;
+				top:10px;
+				
+				#search-button {
+					position:relative;
+					background-color: white;
+					border: 1px $company solid;
+					left: -2px;
+				}
+				
+				input#search2 {
+					background-color:lighten(#F9F9F9,20%);
+					width:125px;
+					font-size:14px;
+					border: 1px solid $company;
+				}	
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+

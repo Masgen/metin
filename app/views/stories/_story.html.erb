@@ -1,0 +1,53 @@
+<% @story_url_og = story_url(story) %>
+
+<%= content_tag :div, class: "story", id: "story_#{story.id}" do %>
+  <%= content_tag :div, class: "story-header" do %>
+	<%= content_tag :div, link_to(story.title.upcase, story_path(story)), class: "title" %>
+    <%= content_tag :div, story.event_date.strftime("%d %B %Y"), class: "event-date" %>
+  <% end %>
+  <% if current_user %>
+  	<%= content_tag :div, class: "actions" do %>
+	  <%= content_tag :div, class: "edit-delete" do %>
+        <%= link_to("Edit the story", edit_story_path(story.id), class: "utility-link")%> | 
+	    <%= link_to("Delete the story", story_path(story.id), class: "utility-link", method: :delete, confirm: "Are you sure?")%>
+	  <% end %>
+	<% end %><br />
+  <% end %>
+
+  <% unless story.cover.url =~ /\/covers\/original\/missing\.png/  %>
+  	<%= content_tag :div, class: "cover" do %>
+		<% if !story.visuals.empty?%>
+		  <%= link_to image_tag(story.cover.url(:normal)), {action: "show_visuals", id: story.id, visual_id: 0}, remote: true, class: "visual-link" %>
+		<% else %>
+		  <%= image_tag(story.cover.url(:normal))%>
+		<% end %>
+	<% end %>
+	
+	  <%= content_tag :div, simple_format(story.content), class: "content" %>
+	
+	  <% if raw_video = return_video(story.video,story.video_source)  %>
+		<%= content_tag :div, class: "video" do %>
+		  <%= link_to image_tag("play_button.png", class: "video-play-button"),  {action: 'show_video', id: story.id}, remote: true %>
+	      <%= link_to image_tag(raw_video.thumbnail_url, width:"576"), {action: 'show_video', id: story.id}, class: "load-video", remote: true %>
+		<% end %>
+	  <% end %>
+	<% else %>
+	  <% if raw_video = return_video(story.video,story.video_source)  %>
+		<%= content_tag :div, class: "video" do %>
+		  <%= link_to image_tag("play_button.png", class: "video-play-button"),  {action: 'show_video', id: story.id}, remote: true %>
+	      <%= link_to image_tag(raw_video.thumbnail_url, width:"576"), {action: 'show_video', id: story.id}, class: "load-video", remote: true %>
+		<% end %>
+	  <% end %>
+	
+	  <%= content_tag :div, simple_format(story.content), class: "content" %>
+	
+	<% end %>
+
+<%= content_tag :div, class: "social-share" do %>
+  <%= link_to content_tag(:div, "", class: "facebook"), "http://www.facebook.com/sharer/sharer.php?" << { u: story_url(story.id) }.to_query, class: "facebook-share" %>
+
+  <%= link_to content_tag(:div, "", class: "twitter"), "https://twitter.com/share?" << {url: story_url(story.id), via: "mg_company", text: story.title, count: "vertical", lang: "en", counturl: story_url(story.id)}.to_query, class: "twitter-share"%>
+<% end %>
+
+  <%= content_tag :div, link_to("Download press release", story.press_release.url), class: "press-release" unless story.press_release.url =~ /\/press_releases\/original\/missing\.png/ %>
+<% end %>

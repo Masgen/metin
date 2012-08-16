@@ -1,0 +1,14 @@
+<%= content_tag :div, id: "visuals" do %>
+	<%= content_tag :div, image_tag('close_button.png'), id: "close" %>
+	<%= content_tag :div, id: "visual-show" do %>
+		<%= content_tag :div, id: "back-button" do %>
+			<%= link_to image_tag('back_button.png'), {action:'show_visuals', visual_id: @visuals.find_index(@visual) - 1}, id:"previous", remote:true if @visual != @visuals.first%>
+		<% end %>
+		
+		<%= content_tag :div, id: "next-button" do %>
+			<%= link_to image_tag('next_button.png'), {action:'show_visuals', visual_id: @visuals.find_index(@visual) + 1}, id:"next", remote:true if @visual != @visuals.last%>
+		<% end %>
+		
+		<%= image_tag @visual.picture.url(:normal), id: "picture" %>
+	<% end %>
+<% end %>

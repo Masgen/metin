@@ -1,0 +1,32 @@
+<%= form_for @employee do |f|  %>
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@employee.errors.count, "error") %> prohibited this story from being saved:</h2>
+
+      <ul>
+      <% @employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= content_tag :div, class: "field" do %>
+    <%= f.label :name %>:<br />
+    <%= f.text_field :name %>
+  <% end %>
+
+  <%= content_tag :div, class: "field" do %>
+    <%= f.label :job_title %>:<br />
+    <%= f.text_field :job_title %>
+  <% end %>
+
+  <%= content_tag :div, class: "field" do %>
+    <%= f.label :photograph %>: 
+    <%= f.file_field :photograph %>
+  <% end %>
+	
+  <%= content_tag :div, class: "actions" do%>
+    <%= f.submit%>
+  <% end %>
+<% end %>

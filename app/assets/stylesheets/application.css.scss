@@ -1,0 +1,135 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+*/
+
+html, body {margin:0; padding: 0; font-family: 'Bookman Old Style', serif;}
+
+$company: #D52927;
+
+@font-face {
+    font-family: 'MetaT';
+    src: url(font-path('metatbold-webfont.eot') + "?#iefix") format('embedded-opentype'),
+       	 url(font-path('metatbold-webfont.woff')) format('woff'),
+       	 url(font-path('metatbold-webfont.ttf'))  format('truetype'),
+       	 url(font-path('metatbold-webfont.svg') + "#MetaTBold") format('svg');
+    font-weight: normal;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: 'MetaT';
+    src: url(font-path('metat-webfont.eot') + "?#iefix") format('embedded-opentype'),
+       	 url(font-path('metat-webfont.woff')) format('woff'),
+       	 url(font-path('metat-webfont.ttf'))  format('truetype'),
+       	 url(font-path('metat-webfont.svg') + "#MetaT") format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+img {
+	border-style:none;
+}
+
+#homepage {
+	img {
+		height: 100%;
+	}
+}
+
+a {
+	color: #535353;
+	text-decoration: none;
+	font-family: 'Bookman Old Style', serif;
+	font-size: 14px;
+	&:hover {
+		color: darken(#707070,70%);
+	}
+}
+
+#body, #header {
+	padding:0 0 0 20px;
+	position: relative;
+	width:800px;
+}
+
+#header {
+	height:144px;
+}
+
+#body {
+	padding-bottom: 30px;
+}
+
+#logout-link {
+	font-family: "MetaT";
+	position:absolute;
+	right: 0;
+	top:10px;
+}
+
+/* The answer to ultimate FORM, html and everything */
+
+.field {
+	padding-bottom:15px;
+	font-size: 16px;
+	font-weight:lighter;
+}
+
+label {
+	margin-bottom:-17px;
+	padding:0;
+}
+
+.field input[type="text"], .field input[type="password"] {
+	background-repeat: repeat-x;
+	border:1px solid #888;
+	width: 250px;
+	height:20px;
+	font-size: 14px;
+}
+
+.field textarea {
+	height:300px;
+	width:800px;
+	border: thin solid #888;
+	font-size:14px;
+}
+
+	
+.utility-link {
+	font-family: "MetaT";
+	position:relative;
+	font-size:16px;
+	text-decoration:underline;
+}
+
+.clearfix:after{
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  font-size: 0;
+}
+
+.half-square {
+	position: absolute;
+	background-image: url("half_square.png");
+	width:10px;
+	height:10px;
+}
+
+
+@import "stories.css.scss";
+@import "identities.css.scss";
+@import "employees.css.scss";
+@import "sessions.css.scss";

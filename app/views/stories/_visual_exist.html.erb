@@ -1,0 +1,6 @@
+<% unless f.object.new_record?%>
+  <%= content_tag :div, class: "thumbnail" do %>
+    <%= image_tag f.object.picture(:thumbnail)%>
+    <%= f.hidden_field :_destroy %>
+  <% end %>
+<% end %>

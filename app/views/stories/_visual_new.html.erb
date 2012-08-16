@@ -1,0 +1,7 @@
+<div>
+  <% if f.object.new_record? %>
+    <%= f.file_field :picture %>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to "Remove", "#", class: "remove_fields" %>
+  <% end %>
+</div>

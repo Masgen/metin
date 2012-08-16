@@ -1,0 +1,71 @@
+var windowHeight = $(window).height();
+var windowWidth = $(window).width();
+var visualShowCss = {
+	"height": windowHeight * 0.80,
+	"width": windowWidth * 0.80,
+	}
+var pictureCss = {
+	"height": "100%"
+}
+
+var blackoutCss = {
+	"height": $(document).height(),
+	"width": $(document).width(),
+	"z-index": "10000"
+}
+
+loadEverything = function() {
+	$("#visuals img#picture").load(function() {
+		$("#ajax-loader").remove();
+		$("#visuals").fadeIn("fast");
+		if (($(this).height() > (windowHeight * 0.80)) || ($(this).width() > (windowWidth * 0.80))) {
+
+			$("#visual-show").css(visualShowCss);
+			$("#picture").css(pictureCss);
+			
+			var newVisualShowCss = {
+				"height": $("#picture").height(),
+				"width": $("#picture").width()
+			}
+			$("#visual-show").css(newVisualShowCss);
+		}
+
+		var positionCss = {
+			"top": (windowHeight - $("#visual-show").height()) / 2,
+			"left": (windowWidth  - $("#visual-show").width()) / 2
+		}
+
+		var buttonTopPositionCss = {
+			"top": $("#visual-show").height() / 2 - 40
+		}
+
+		$("#visuals").css(positionCss);
+		$("#back-button").css(buttonTopPositionCss);
+		$("#next-button").css(buttonTopPositionCss);
+	});
+}
+
+startEverything = function() {
+	$("body").prepend("<div id='ajax-loader'><img src='/assets/ajax-loader.gif'/></div>");
+	$("#ajax-loader").css({
+		"position": "fixed",
+		"z-index": "1000000000",
+		"top": windowHeight/2 - 3,
+		"left": windowWidth/2 -8
+	});
+	$("body").prepend("<%= j render('show_visuals') %>");
+	loadEverything();
+}
+
+if (!$('#visuals').length) {
+	$("body").prepend("<div id='blackout'></div>");
+	$("#blackout").css(blackoutCss);
+	$("html").css({"overflow":"hidden"});
+	$("body").css({"overflow":"hidden"});
+	startEverything();
+} else {
+	$('#visuals').fadeOut("fast", function() {
+		$(this).remove();
+		startEverything();
+	});
+}

@@ -1,0 +1,26 @@
+<%= content_tag(:h2,"Edit About Us Page")%>
+
+<%= link_to "Back to company", company_path, class: "utility-link"%><br /><br />
+
+<%= form_for @identity do |f| %>
+  <% if @identity.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@identity.errors.count, "error") %> prohibited this story from being saved:</h2>
+
+      <ul>
+      <% @identity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= content_tag :div, class: "field" do %>
+    <%= f.label :content %>:<br />
+    <%= f.text_area :content %>
+  <% end %>
+	
+  <%= content_tag :div, class: "actions" do%>
+    <%= f.submit "Update"%>
+  <% end %>
+<% end %>

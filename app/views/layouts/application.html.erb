@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= @header + " | " if @header %>Metin Gürsoy Company</title>
+    <meta name="description" content="METINGURSOY PR &amp; MARKETING is the first marketing communications company in Turkey that focuses on lifestyle &amp; fashion positioning."/>
+    <meta name="keywords" content="Marketing Consultancy, Brand Consultancy, Brand Positioning, Advertising, Social Media, Fashion PR, 360 Marketing, Fashion Bloggers, Creative Advertising, Visual Direction, Event Management, Corporate Communications, Turkey Fashion PR, Istanbul fashion PR, Istanbul brand Consultants"/>
+    <meta name="title" content="METINGURSOY PR &amp; MARKETING"/>
+    <meta property="og:description" content="<%= @story ? truncate(@story.content, length: 150) : "METINGURSOY PR &amp; MARKETING is the first marketing communications company in Turkey that focuses on lifestyle &amp; fashion positioning." %>"/>
+    <meta property="og:title" content="<%= @header + " | " if @header %>Metin Gürsoy Company"/>
+    <meta property="og:url" content="<%= @story_url_og ? @story_url_og : root_url %>"/>
+    <meta property="og:image" content="<%= root_url + @story.cover.url(:facebook).gsub(/^\//, '') if @story && @story.cover.url(:normal) %>"/>
+    <meta property="og:site_name" content="METINGURSOY PR &amp; MARKETING"/>
+    <meta name="author" content="Mistral Contrastin">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body id="<%= params[:controller].parameterize %>-controller" >
+
+    <%= content_tag :div, id: "header" do %>
+	  <% if current_user %>
+	    <%= link_to "Logout", session_path, method: :delete, id: "logout-link", class: "utility-link" %>
+	  <% end %>
+      <%= link_to image_tag("logo/metin_gursoy_logo.png"), root_path, id: "homepage"%>
+    <% end %>
+
+    <%= content_tag :div, id: "body" do%>
+	  <%= "#{flash[:notice]} <br />".html_safe if flash[:notice] %>
+      <%= yield %>
+    <% end %>
+  </body>
+</html>

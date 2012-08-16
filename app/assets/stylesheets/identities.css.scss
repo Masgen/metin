@@ -1,0 +1,53 @@
+// Place all the styles related to the identities controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body#identities-controller {
+	font-family: "MetaT";
+	font-size: 12px;
+	
+	h2 { color: $company; font-weight: normal; font-size: 12px;}
+	
+	#square-one {
+		top: -5px;
+		left: 150px;
+	}
+	
+	#square-two {
+		top: 18px;
+		left: 460px;
+	}
+	
+	#identity-content {
+		text-align:justify;
+		text-justify:inter-word;
+	}
+	
+	#identity-title {
+		font-weight: bold;
+	}
+	
+	.row {
+		position:relative;
+		padding-bottom:10px;
+		
+		.employee-column:first-child {
+			margin-left: 0;
+		}
+		.employee-column {
+			position:relative;
+			float:left;
+			width:170px;
+			height:210px;
+			margin-left: 40px;
+			text-align:center;
+			
+			.employee-title { font-size:10px;}
+			.employee-name {
+				font-family: "MetaT";
+				font-weight: bold;
+				font-size: 12px;
+			}
+		}
+	}
+}

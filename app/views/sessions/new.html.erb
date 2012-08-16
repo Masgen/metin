@@ -1,0 +1,17 @@
+<%= content_tag :h2, "Login"%>
+
+<%= content_tag :div, "login-form" do %>
+  <%= form_tag session_path, method: "post" do %>
+  	<%= content_tag :div, class: "field" do %>
+	    <%= label_tag :nickname %>:<br />
+	    <%= text_field_tag :nickname%>
+	<% end %>
+	<%= content_tag :div, class: "field" do %>
+	    <%= label_tag :password %>:<br />
+	    <%= password_field_tag :password%>
+	<% end %>
+	<%= content_tag :div, class: "actions" do %>
+	    <%= submit_tag "Login" %>
+	<% end %>
+  <% end %>
+<% end %>

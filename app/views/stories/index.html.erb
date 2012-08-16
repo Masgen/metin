@@ -1,0 +1,68 @@
+<% if current_user %>
+	<%= link_to 'New Story', new_story_path, class: "utility-link" %>
+<% end %>
+
+<%= content_tag :div, id: "search" do %>
+  <%= content_tag :div, id: "company-link-container" do %>
+    <%= content_tag :div, "", id: "horizontal-line" %>
+    <%= content_tag :div, link_to("COMPANY", company_path), id: "company-link" %>
+  <% end %>
+  <%= content_tag :div, "", class: "half-square", id: "square-one" %>
+    <%= content_tag :div, id: "filter" do %>
+	  <%= content_tag :div, id: "date-filter" do %>
+		<%= content_tag :div, "", id: "horizontal-date-top"%>
+		<% if !params[:search].blank? and @stories.blank? %>
+		  <%= content_tag :div, "No Posts!", id: "no-posts"%>
+		<% elsif !params[:month].blank? or !params[:search].blank? %>
+		  <%= content_tag :div, link_to("Clear all", root_path), id: "clear-all" %>
+		<% end %>
+		<% if !@stories.blank? %>
+	    	<%= content_tag :ul, class: "years" do %>
+		      <% for year in @years %>
+		        <%= content_tag :li, class: "year" do %>
+			      <%= link_to year.value, "#", class: "year-link" %>
+			      <%= content_tag :ul, class: "months" do %>
+			        <% for month in year_helper(year.value) %>
+			          <%= content_tag :li, class: "month" do%>
+			            <%= link_to month[0], month: month[0], year: year.value %>
+			          <% end %>
+			        <% end %>
+			      <% end %>
+			    <% end %>
+		      <% end %>
+		    <% end %>
+		<% end %>
+	  <% end %>
+	  <%= form_tag stories_path, method: :get do %>
+		<%= content_tag :table, id:"search-facility", class: "clearfix" do %>
+		  <%= content_tag :tr do%>
+		    <%= content_tag :td do %>
+		  	  <%= content_tag :div, text_field_tag(:search, params[:search], id:"search2"), id: "search-tag" %>
+		    <% end %>
+		  <% end %>
+		  <%= content_tag :tr do %>
+		    <%= content_tag :td do%>
+		      <%= submit_tag "Search", name: nil, id: "search-button"%>
+		    <% end %>
+		  <% end %>
+		<% end %>
+	  <% end %>
+	<% end %>
+<% end %>
+
+
+<%= content_tag :div, id: "stories" do%>
+  <% if !@stories.blank? %>
+    <%= render @stories%>
+  <% elsif !params[:search].blank? %>
+    <%= content_tag :div, id: "no-result-found" do %>
+      Sorry, but there are no posts that match "<%= "#{params[:search]}"%>".<br />
+    <% end %>
+  <% else %>
+    <%= content_tag :div, id: "no-posts" do %>
+      There are no events and stories to show yet but get excited!
+    <% end %>
+  <% end%>
+<% end %>
+
+<%= will_paginate @stories %>

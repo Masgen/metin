@@ -1,0 +1,61 @@
+<%= form_for(@story,html: {multipart: true}) do |f| %>
+  <% if @story.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h2>
+
+      <ul>
+      <% @story.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>:<br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content %>:<br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+	<%= f.label :video_source, "Video Source" %>
+	<%= f.select :video_source, ["Vimeo","Youtube"]%>
+  </div>
+  <div class="field">
+    <%= f.label :video, "Video Link" %>:<br />
+    <%= f.text_field :video %>
+  </div>
+  <div class="field">
+    <%= f.label :event_date %>:<br />
+    <%= f.date_select :event_date, order: [:day, :month, :year], start_year: Time.now.year - 15, end_year: Time.now.year + 3 %>
+  </div>
+  <div class="field">
+	<%= f.label :press_release%>: 
+	<%= f.file_field :press_release%>
+  </div>
+  <div class="field">
+    <%= f.label :cover %>:
+	<%= content_tag :div, "Cover width must be bigger than 576px.", class: "warning"%>
+    <%= content_tag :div, "Cover dimension ratio must be 5:4 at max.", class: "warning"%>
+    <%= f.file_field :cover %>
+  </div>
+  <div class="field">
+	<%= content_tag :div, "Add visuals:" %>
+	<%= f.fields_for :visuals do |builder| %>
+	  <%= render partial: "visual_new", locals: {f: builder}%>
+	<% end %>
+	<%= link_to_add_fields "Add Another Visual", f, :visuals%>
+  </div>
+  <div class="field clearfix">
+	<%= content_tag :div, "Delete visuals:"%>
+	<%= content_tag :div, "In order to delete visuals click on them to select. Then press 'Update Story' to confirm."%>
+	<%= f.fields_for :visuals do |builder| %>
+	  <%= render partial: "visual_exist", locals: {f: builder}%>
+	<% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

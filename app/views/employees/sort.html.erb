@@ -1,0 +1,11 @@
+<%= content_tag(:h2,"Sort Employees")%>
+
+<%= link_to "Back to company", company_path, class: "utility-link"%><br /><br />
+<ul id="sort-employees" data-update-url="<%= sort_employees_url %>">
+	<% @employees.each do |employee| %>
+		<%= content_tag_for :li, employee do %>
+		  <%= content_tag :span, "[handle]", class: "handle" %>
+		  <%= content_tag :span, employee.name, class: "employee-name"%>
+		<% end %>
+	<% end %>
+</ul>
