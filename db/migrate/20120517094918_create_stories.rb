@@ -9,7 +9,5 @@ class CreateStories < ActiveRecord::Migration
     #
     #  t.timestamps
     #end
-    add_index :stories, :content
-    add_index :stories, :title
   end
 end
