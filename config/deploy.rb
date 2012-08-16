@@ -1,4 +1,4 @@
-$:.unshift(File.expand_path('.rbenv/shims', ENV['HOME']))
+$:.unshift(File.expand_path('./.rbenv/shims', ENV['HOME']))
 
 require "bundler/capistrano"
 
