@@ -46,14 +46,13 @@ end
 after 'deploy:setup', 'deploy:setup_solr_data_dir'
 
 namespace :deploy do
-  desc 'Load DB schema - CAUTION: rewrites database!'
-  task :load_schema, :roles => :app do
-    run "cd #{current_path}; bundle exec rake db:schema:load RAILS_ENV=#{rails_env}"
-  end
 
   task :cold do       # Overriding the default deploy:cold
     update
-    load_schema       # My own step, replacing migrations.
+    desc 'Load DB schema - CAUTION: rewrites database!'
+    task :load_schema, :roles => :app do
+      run "cd #{current_path}; bundle exec rake db:schema:load RAILS_ENV=#{rails_env}"
+    end      # My own step, replacing migrations.
     start
   end
 
