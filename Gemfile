@@ -10,13 +10,13 @@ gem 'paperclip'
 gem 'ruby-oembed'
 gem 'will_paginate', '> 3.0'
 gem 'sunspot_rails'
+gem 'sunspot_solr'
 gem 'acts_as_list'
 gem 'therubyracer'
 gem 'whenever'
 
 group :development do
   gem 'thin'
-  gem 'sunspot_solr'
 end
 
 
