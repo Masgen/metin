@@ -46,6 +46,16 @@ end
 after 'deploy:setup', 'deploy:setup_solr_data_dir'
 
 namespace :deploy do
+
+  task :cold do       # Overriding the default deploy:cold
+    update
+    load_schema       # My own step, replacing migrations.
+    start
+  end
+
+  task :load_schema, :roles => :app do
+    run "cd #{current_path}; rake db:schema:load"
+  end
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
