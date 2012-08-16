@@ -1,3 +1,5 @@
+$:.unshift(File.expand_path('.rbenv/shims', ENV['HOME']))
+
 require "bundler/capistrano"
 
 server "50.56.178.45", :web, :app, :db, primary: true
